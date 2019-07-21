@@ -1,0 +1,24 @@
+{% extends "layout.html" %} {% block content %}
+<div class="flex-center flex-column">
+    <a href="{{ url_for('create_objective') }}">
+        <button type="button" class="btn btn-blue-grey">
+        <i class="fas fa-plus-circle mr-2"></i>
+        OBJECTIVE
+    </button>
+    </a>
+</div>
+
+
+{% for objective in objectives %}
+<article class="media content-section">
+    <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + objective.author.image_file) }}">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2" href="#">{{ objective.author.username }}</a>
+            <small class="text-muted">{{ objective.date_posted.strftime('%Y-%m-%d') }}</small>
+        </div>
+        <h2><a class="article-title" href="{{ url_for('objective', objective_id=objective.id) }}">{{ objective.subject }}</a></h2>
+        <p class="article-content">{{ objective.content }}</p>
+    </div>
+</article>
+{% endfor %} {% endblock content %}

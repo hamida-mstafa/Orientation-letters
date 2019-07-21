@@ -1,0 +1,22 @@
+{% extends "layout.html" %} {% block content %}
+
+<div style="height: 100vh; margin-top: -7%">
+    <div class="flex-center flex-column">
+        <h5 class="animated fadeIn mb-3">Hamida's Project</h5>
+        <hr style="width: 80px; color: black; height: 10px;">
+        <h1 class=" animated fadeIn mb-4">
+            <a href="{{ url_for('letter') }}">
+                <button type="button " class="btn btn-blue-grey text-center " id="roll-dice">
+            <i class="fas fa-plus-circle mr-2"></i> 
+            <strong>LETTER</strong>
+            </button>
+            </a>
+            <a href="{{ url_for('objective') }}">
+                <button type="button " class="btn btn-blue-grey text-center " id="hold">
+            <i class="fas fa-plus mr-2"></i>
+            <strong>OBJECTIVE</strong></button></a>
+
+        </h1>
+    </div>
+</div>
+{% endblock content %}
