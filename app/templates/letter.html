@@ -2,23 +2,28 @@
 <div class="flex-center flex-column">
     <a href="{{ url_for('create_letter') }}">
         <button type="button" class="btn btn-blue-grey">
-        <i class="fas fa-plus-circle mr-2"></i>
-        LETTER
-    </button>
+            <i class="fas fa-plus-circle mr-2"></i>
+            LETTER
+        </button>
     </a>
 </div>
 
 
 {% for letter in letters %}
-<article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + letter.author.image_file) }}">
-    <div class="media-body">
-        <div class="article-metadata">
-            <a class="mr-2" href="#">{{ letter.author.username }}</a>
-            <small class="text-muted">{{ letter.date_posted.strftime('%Y-%m-%d') }}</small>
+<div class="container">
+    <article class="media content-section p-5">
+        <img class="rounded-circle article-img"
+            src="{{ url_for('static', filename='profile_pics/' + letter.author.image_file) }}">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">{{ letter.author.username }}</a>
+                <small class="text-muted">{{ letter.date_posted.strftime('%Y-%m-%d') }}</small>
+            </div>
+            <h2><a class="article-title" href="{{ url_for('letter', letter_id=letter.id) }}">{{ letter.subject }}</a>
+            </h2>
+            <p class="article-content">{{ letter.content }}</p>
         </div>
-        <h2><a class="article-title" href="{{ url_for('letter', letter_id=letter.id) }}">{{ letter.subject }}</a></h2>
-        <p class="article-content">{{ letter.content }}</p>
-    </div>
-</article>
+    </article>
+
+</div>
 {% endfor %} {% endblock content %}

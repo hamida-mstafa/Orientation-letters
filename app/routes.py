@@ -42,6 +42,7 @@ def login():
         return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
+        print(form.email.data)
         user = User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user, remember=form.remember.data)
@@ -79,10 +80,12 @@ def account():
     return render_template('account.html', title='Account',
                            image_file=image_file, form=form)
 
-
 @app.route("/letter")
+@login_required
+
 def letter():
-    letters = Letter.query.filter_by(id=current_user.id)
+    print(current_user)
+    letters = Letter.query.filter_by(user_id=current_user.id)
     return render_template('letter.html', title='letter', letters = letters)
 
 
@@ -100,8 +103,9 @@ def create_letter():
 
 
 @app.route("/objective")
+@login_required
 def objective():
-    objectives = Objective.query.all()
+    objectives = Objective.query.filter_by(user_id=current_user.id)
     return render_template('objective.html', title='objective', objectives = objectives)
 
 

@@ -17,6 +17,9 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(60), nullable=False)
     objectives = db.relationship("Objective", backref='author', lazy=True)
     letters = db.relationship("Letter", backref='author', lazy=True)
+    @login_manager.user_loader
+    def load_user(user_id):
+        return User.query.get(int(user_id))
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
