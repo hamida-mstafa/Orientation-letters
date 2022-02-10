@@ -2,7 +2,7 @@ alembic==1.0.11
 bcrypt==3.1.7
 cffi==1.12.3
 Click==7.0
-Django==2.2.3
+Django==2.2.27
 dominate==2.3.5
 Flask==1.1.1
 Flask-Bcrypt==0.7.1
